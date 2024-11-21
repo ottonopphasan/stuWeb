@@ -13,6 +13,7 @@ import easyocr
 
 class documentPrepare:
     def __init__(self, pdf_path,y1,y2,x1,x2,start_page=0):
+        self.pytesseractpath = ".\\Fibo_Project\\Tesseract-OCR\\tesseract.exe"
         self.pdf_path = pdf_path
         self.start_page = start_page
         self.y1 = y1

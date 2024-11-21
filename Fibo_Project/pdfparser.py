@@ -9,11 +9,12 @@ from matplotlib import pyplot as plt
 import numpy as np
 import time
 import pandas as pd
+import easyocr
 #trOCR easyocr
 
 class documentPrepare:
     def __init__(self, pdf_path,y1,y2,x1,x2,start_page=0):
-        self.pytesseractpath = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+        self.pytesseractpath = ".\\Fibo_Project\\Tesseract-OCR\\tesseract.exe"
         self.pdf_path = pdf_path
         self.start_page = start_page
         self.y1 = y1
@@ -54,7 +55,12 @@ class documentPrepare:
             if i > start_page - 2:
                 image.save(f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw\\page_{i + 1}.png', 'PNG')
                 images = cv2.imread(f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw\\page_{i + 1}.png')
-                thresh = images[y1:y2,x1:x2]
+                x, y = images.shape[1], images.shape[0]
+                #print(f'image size : {images.shape}')
+                # 250,2100,130,1500
+                # 2339, 1654
+                # 250, 239, 130, 154
+                thresh = images[y1:y - y2,x1:x - x2]
                 self.page.append(i+1)
                 cv2.imwrite(f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw\\page_{i+1}.png', thresh)
             else:
@@ -139,9 +145,10 @@ class documentPrepare:
         return line_confidence, lines
     
 
-    def save_bboxIMG(self, dict, line_confidence, lines):
+    def save_bboxIMG(self,reader, dict, line_confidence, lines):
         pytesseract.tesseract_cmd = self.pytesseractpath
         data = {}
+        data_easyocr = {}
         print(f'dict keys : {dict.keys()}')
         try:
             os.mkdir(f'.\\Fibo_Project\\Database\\{self.name}\\image\\bbox')
@@ -150,6 +157,7 @@ class documentPrepare:
             pass
         for k,key in enumerate(dict.keys()):
             texts = []
+            texts_easyocr = []
             image_path = f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw\\{key}.png'
             image = cv2.imread(image_path)
             clean_img = image.copy()
@@ -165,8 +173,20 @@ class documentPrepare:
                     cv2.putText(image, f'{line_confidence[k][num]}', (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
                     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
                     sub_img = clean_img[y-(int(0)):y+h+(int(0)),x-(int(0)):x+w+(int(0))] 
+                    
                     text = pytesseract.image_to_string(sub_img, lang='tha+eng', config=self.custom_config)
+                    result = reader.readtext(sub_img)
+
+                    #text = ''
+                    text_easyocr = ''
+                    
+                    for (bbox, txt, prob) in result:
+                        #print(f'txt : {txt}| prob : {prob}| bbox : {bbox}')
+                        if prob > 0.1:
+                            text_easyocr += txt + '\n'
+
                     texts += [text]
+                    texts_easyocr += [text_easyocr]
                     # print(f'text : {text}')
                     # cv2.imshow('sub',sub_img)
                     # cv2.waitKey(0)
@@ -177,9 +197,14 @@ class documentPrepare:
                     cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
             data[f'{key}'] = ''.join(texts[::-1])
+            data_easyocr[f'{key}'] = ''.join(texts_easyocr[::-1])
             with open(f'.\\Fibo_Project\\Database\\{self.name}\\json\\{self.name}v3.json', 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=4)
+            with open(f'.\\Fibo_Project\\Database\\{self.name}\\json\\{self.name}v3_easyocr.json', 'w', encoding='utf-8') as f:
+                json.dump(data_easyocr, f, ensure_ascii=False, indent=4)
+
             cv2.imwrite(f'.\\Fibo_Project\\Database\\{self.name}\\image\\bbox\\{key}.png', image)
+        
         print('Get string v3 success')
         print('save bbox images success')
 
@@ -227,7 +252,7 @@ class documentPrepare:
         print(f'page : {self.page}')
         with open('.\\Fibo_Project\\Database\\mold_Preparing\\json\\mold_Preparing_context.json', 'r', encoding='utf-8') as f:
             jsn = json.load(f)
-        for i in range(3,13):
+        for i in self.page:
             image_path = f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw\\page_{i}.png'
             text = jsn[f'page_{i}']
 
@@ -235,32 +260,34 @@ class documentPrepare:
             pages.append(i)
             texts.append(text)
 
-        print(f'img_path : {img_paths}')
-        print(f'page : {pages}')
-        print(f'text : {texts}')
+        # print(f'img_path : {img_paths}')
+        # print(f'page : {pages}')
+        # print(f'text : {texts}')
         dataframe = {
             'image': img_paths,
             'page': pages,
             'text': texts
         }
-        print(dataframe)
+        #print(dataframe)
         df = pd.DataFrame(dataframe)
         df.to_csv(f'.\\Fibo_Project\\Database\\{self.name}\\{self.name}.csv', index=False)
 
+
     def main(self):
-        # self.save_image()
-        # dict = self.get_string()
-        # line_conf, lines = self.get_conf(dict)
-        # self.save_bboxIMG(dict, line_conf, lines)
-        self.create_csv()
+        reader = easyocr.Reader(['en', 'th']) 
+        self.save_image()
+        dict = self.get_string()
+        line_conf, lines = self.get_conf(dict)
+        self.save_bboxIMG(reader, dict, line_conf, lines)
+        #self.create_csv()
 
 
 if __name__ == '__main__':
 
-    hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\mold_Preparing.pdf'
-    hope_doc = documentPrepare(hopepdf_path,250,2100,130,1500, start_page=3)
-    hope_doc.main()
-
-    # hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\segment_repairing.pdf'
-    # hope_doc = documentPrepare(hopepdf_path,250,2100,130,1500, start_page=2)
+    # hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\mold_Preparing.pdf'
+    # hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=3)
     # hope_doc.main()
+
+    hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\segment_repairing.pdf'
+    hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=2)
+    hope_doc.main()
