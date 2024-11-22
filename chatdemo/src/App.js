@@ -1,10 +1,12 @@
 // App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './App.css';
-import './index.css';
-import mainPage from './component/pages/chatMain';  // Import the ChatPage component
-import ChatPage from './component/pages/chatMain';  // Import the ChatPage component
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import "./App.css";
+import "./index.css";
+import MainPage from "./component/pages/questionMain"; // Import the MainPage (QuestionPage)
+import ChatPage from "./component/pages/chatMain"; // Import the ChatPage component
+import Page3 from "./component/pages/Page3"; // Import Page3 for displaying data
+import DirectedQuestion from "./component/pages/directQuestion"; // Import Page3 for displaying data
 
 function App() {
   return (
@@ -12,18 +14,18 @@ function App() {
       <div className="app">
         {/* Navigation Buttons */}
         <div className="button-container">
-          <Link to="/main" className="button">main</Link>
+          <Link to="/main" className="button">Main</Link>
           <Link to="/chat" className="button">Chat</Link>
           <Link to="/page3" className="button">Page 3</Link>
-          <Link to="/page4" className="button">Page 4</Link>
+          <Link to="/directedQuestion" className="button">directedQuestion</Link>
         </div>
 
         {/* Routes */}
         <Routes>
+          <Route path="/main" element={<MainPage />} /> {/* Add MainPage route */}
           <Route path="/chat" element={<ChatPage />} />
-          <Route path="/page2" element={<div>Page 2 Content</div>} />
-          <Route path="/page3" element={<div>Page 3 Content</div>} />
-          <Route path="/page4" element={<div>Page 4 Content</div>} />
+          <Route path="/page3" element={<Page3 />} /> {/* Add Page3 route */}
+          <Route path="directedQuestion" element={<DirectedQuestion />} />
         </Routes>
       </div>
     </Router>

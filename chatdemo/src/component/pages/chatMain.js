@@ -1,21 +1,32 @@
-// ChatPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'C:/Users/gamen/manage-tool/stuWeb/chatdemo/src/App.css';
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
+  const [topic, setTopic] = useState(""); // New state for topic
 
   // Mock response generator (replace this with an API call later)
   const generateResponse = (userMessage) => {
     return `You said: ${userMessage}`;
   };
 
-  const handleSendMessage = () => {
-    if (currentMessage.trim() === "") return;
+  // Load messages from localStorage when the component mounts
+  useEffect(() => {
+    const storedMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+    setMessages(storedMessages);
+  }, []);
 
-    const userMessage = { type: "user", content: currentMessage };
-    const botMessage = { type: "bot", content: generateResponse(currentMessage) };
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('chatMessages', JSON.stringify(messages));
+  }, [messages]);
+
+  const handleSendMessage = () => {
+    if (currentMessage.trim() === "" || topic.trim() === "") return;
+
+    const userMessage = { type: "user", content: currentMessage, topic };
+    const botMessage = { type: "bot", content: generateResponse(currentMessage), topic };
 
     setMessages((prevMessages) => [...prevMessages, userMessage, botMessage]);
     setCurrentMessage(""); // Clear input
@@ -35,6 +46,17 @@ const Chat = () => {
         </div>
       </div>
 
+      {/* Topic Input */}
+      <div className="w-full px-[19px] py-2 flex flex-col gap-2">
+        <label className="text-[#1e1f20] text-base font-['Montserrat']">Topic:</label>
+        <input
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          className="w-full h-10 px-4 py-2 bg-[#eedede] rounded-lg text-[#1e1f20] text-base font-['Montserrat'] leading-normal"
+          placeholder="Enter topic"
+        />
+      </div>
+
       {/* Chat Room */}
       <div className="flex-1 w-full px-4 py-2 overflow-y-auto flex flex-col gap-4 bg-[#f5ebeb7c]">
         {messages.map((message, index) => (
@@ -51,7 +73,8 @@ const Chat = () => {
                   : "bg-gray-300 text-black"
               }`}
             >
-              {message.content}
+              <p className="text-xs text-gray-500">{message.topic}</p> {/* Topic Label */}
+              <p>{message.content}</p>
             </div>
           </div>
         ))}
