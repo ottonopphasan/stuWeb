@@ -1,15 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const QuestionPage = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   return (
     <div className="w-[390px] h-[844px] relative">
       {/* Background Gradient */}
       <div className="w-[390px] h-[844px] left-0 top-0 absolute bg-gradient-to-b from-white to-[#eff4ff]"></div>
-      
       {/* Main Content */}
       <div className="w-[390px] h-[844px] px-2.5 py-[50px] left-0 top-0 absolute flex-col justify-start items-center gap-[5px] inline-flex">
         {/* Header */}
-        <div className="self-stretch px-[26px] justify-center items-center gap-[5px] inline-flex">
+        <div className="self-stretch px-[5px] justify-center items-center gap-[5px] inline-flex">
           <img className="w-[26px] h-[26px]" src={require("../icon/lngIcon.png")} />
           <div className="text-center text-[#696b6e] text-[15px] font-normal font-['Montserrat'] leading-relaxed">EN</div>
           <div className="grow shrink basis-0 text-center text-[#183138] text-lg font-normal font-['Montserrat'] leading-relaxed">Question</div>
@@ -51,10 +52,12 @@ const QuestionPage = () => {
       </div>
 
       {/* Floating Button */}
-      <div class="left-[320px] top-[675px] absolute justify-start items-center gap-[7px] inline-flex">
-        <img className="w-[11px] h-[19px]" src={require("../icon/backIcon.png")} />
-        <img className="w-[40px] h-[40px]" src={require("../Button/chatBot.png")} />
-      </div>
+      <button
+        onClick={() => navigate("/Bchat")}
+        className="absolute left-[320px] top-[675px] flex items-center gap-[7px]">
+        <img className="w-[11px] h-[19px]" src={require("../icon/backIcon.png")} alt="Back Icon" />
+        <img className="w-[40px] h-[40px]" src={require("../Button/chatBot.png")} alt="Chat Bot Icon" />
+      </button>
     </div>
   );
 };
