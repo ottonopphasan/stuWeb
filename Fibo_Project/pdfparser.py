@@ -1,13 +1,13 @@
 from PIL import Image
 from pytesseract import pytesseract, Output
 from pdf2image import convert_from_path
-import fitz
+#import fitz
 import os
 import json
 import cv2
 from matplotlib import pyplot as plt
 import numpy as np
-import time
+#import time
 import pandas as pd
 import easyocr
 #trOCR easyocr
@@ -67,6 +67,40 @@ class documentPrepare:
                 pass
         print('Save image success')
 
+    def save_image_fixed(self, fixed_page):
+        images = convert_from_path(self.pdf_path)
+        x1 = self.x1
+        x2 = self.x2
+        y1 = self.y1
+        y2 = self.y2
+        start_page = self.start_page
+        try:
+            os.mkdir(f'.\\Fibo_Project\\Database\\{self.name}')
+        except:
+            pass
+        try:
+            os.mkdir(f'.\\Fibo_Project\\Database\\{self.name}\\image')
+        except:
+            pass
+        try:
+            os.mkdir(f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw')
+        except:
+            pass
+        for i, image in enumerate(images):
+            if i+1 in fixed_page:
+                image.save(f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw\\page_{i + 1}.png', 'PNG')
+                images = cv2.imread(f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw\\page_{i + 1}.png')
+                x, y = images.shape[1], images.shape[0]
+                #print(f'image size : {images.shape}')
+                # 250,2100,130,1500
+                # 2339, 1654
+                # 250, 239, 130, 154
+                thresh = images[y1:y - y2,x1:x - x2]
+                self.page.append(i+1)
+                cv2.imwrite(f'.\\Fibo_Project\\Database\\{self.name}\\image\\raw\\page_{i+1}.png', thresh)
+            else:
+                pass
+        print('Save image success')
 
     def get_string(self):
         pytesseract.tesseract_cmd = self.pytesseractpath
@@ -209,36 +243,6 @@ class documentPrepare:
         print('save bbox images success')
 
 
-    def get_json(self):
-        pytesseract.tesseract_cmd = self.pytesseractpath
-        data = {}
-        #pages = os.listdir(f'.\\Fibo_Project\\{self.name}_subPIC')
-        for p in self.page:
-            texts = ''
-            sub_pic = os.listdir(f'.\\Fibo_Project\\{self.name}_subPIC\\page_{p}')
-            page_sort = sorted(sub_pic, key=lambda x: int(x.split(f'.png')[0]))
-            for sub in page_sort:
-                image_path = f'.\\Fibo_Project\\{self.name}_subPIC\\page_{p}\\{sub}'
-                # images = cv2.imread(image_path)
-                # # Convert to grayscale
-                # gray = cv2.cvtColor(images, cv2.COLOR_BGR2GRAY)
-                # # Apply dilation and erosion to remove some noise
-                # kernel = np.ones((2, 2), np.uint8)
-                # gray = cv2.dilate(gray, kernel, iterations=1)
-                # gray = cv2.erode(gray, kernel, iterations=2)
-
-                # gray = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-                
-                # cv2.imwrite(image_path, gray)
-                image = Image.open(image_path)
-                text = pytesseract.image_to_string(image, lang='tha+eng', config=self.custom_config)
-                texts += text
-            data[f'page_{p}'] = texts
-        with open(f'.\\Fibo_Project\\{self.name}v3.json', 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
-        print('Get string v3 success')
-
-
     def preprocess_text(self, text):
         #open json file
         return 0
@@ -280,6 +284,13 @@ class documentPrepare:
         line_conf, lines = self.get_conf(dict)
         self.save_bboxIMG(reader, dict, line_conf, lines)
         #self.create_csv()
+    
+    def main2(self, page_fixed):
+        reader = easyocr.Reader(['en', 'th']) 
+        self.save_image_fixed(page_fixed)
+        dict = self.get_string()
+        line_conf, lines = self.get_conf(dict)
+        self.save_bboxIMG(reader, dict, line_conf, lines)
 
 
 if __name__ == '__main__':
@@ -288,6 +299,14 @@ if __name__ == '__main__':
     # hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=3)
     # hope_doc.main()
 
-    hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\segment_repairing.pdf'
+    # hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\segment_repairing.pdf'
+    # hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=2)
+    # hope_doc.main()
+
+    # hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\Tunnel_Segment.pdf'
+    # hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=2)
+    # hope_doc.main2([7,8,9,10,11,12,14,17,21,22,29,30,31,38,44,62,65,105,117])
+
+    hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\Method Precast.pdf'
     hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=2)
-    hope_doc.main()
+    hope_doc.main2([8, 17, 20, 31, 43, 50, 51, 52, 53, 65, 66, 89])
