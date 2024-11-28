@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
-import QuestionDB from "./component/pages/MainQuestion";
+import QuestionDBA from "./component/pages/MainQuestionA";
+import QuestionDBQ from "./component/pages/MainQuestionQ";
 import ChatDB from "./component/pages/MainChat";
 import ChatPage from "./component/pages/chatMain";
 import DirectedQuestion from "./component/pages/directQuestion";
@@ -20,7 +21,8 @@ function App() {
         {/* Routes */}
         <Routes>
           <Route path="/" element={<ProjectDashboard />} />
-          <Route path="/QuestionDashboard" element={<QuestionDB />} />
+          <Route path="/QuestionDashboardA" element={<QuestionDBA />} />
+          <Route path="/QuestionDashboardQ" element={<QuestionDBQ />} />
           <Route path="/ChatDashboard" element={<ChatDB />} />
           <Route path="/ReportDashboard" element={<ReportDB />} />
           <Route path="/reportTimeline" element={<TimelineRP />} />

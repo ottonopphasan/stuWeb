@@ -77,7 +77,7 @@ const ChatDB = () => {
         </Link>
 
         {/* Link added for Question button */}
-        <Link to="/QuestionDashboard" className="w-[97.50px] px-2 pt-[14.50px] pb-2 flex-col justify-end items-center gap-[10.96px] inline-flex">
+        <Link to="/QuestionDashboardQ" className="w-[97.50px] px-2 pt-[14.50px] pb-2 flex-col justify-end items-center gap-[10.96px] inline-flex">
             <img className="w-[25px] h-[21px]" src={require("../icon/questionChat.png")} alt="Question" />
             <div className="w-[81.50px] text-center text-[#7e858c] text-[10px] font-medium font-['Montserrat'] leading-3">Question</div>
         </Link>
