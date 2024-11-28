@@ -126,9 +126,15 @@ const QuestionDBQ = () => {
         {/* Arthiz fill here */}
         {/* Section Title */}
         <div className="w-[358px] h-7 text-[#182838] text-[22px] font-bold font-['Montserrat'] leading-7">Directed Question</div>
+        <div class="h-6 justify-start items-center gap-2.5 inline-flex">
+          <div class="w-3 h-3 bg-[#9cd2ff] rounded-[15px]"></div>
+          <div class="text-black text-base font-semibold font-['Montserrat'] leading-normal">Not answered</div>
+          <div class="w-3 h-3 rounded-[15px]"></div>
+          <div class="w-3 h-3 bg-[#9cffab] rounded-[15px]"></div>
+          <div class="text-black text-base font-semibold font-['Montserrat'] leading-normal">AI answered</div>
+      </div>
         {/* Question List */}
         <div className="self-stretch grow p-2.5 bg-white rounded-[10px] flex flex-col justify-start items-start gap-2.5">
-        <div class="w-[358px] h-7 text-[#182838] text-[22px] font-bold font-['Montserrat'] leading-7">Directed Question</div>
         <InfoCard
             topic="Wire Tied up"
             author="Bruce Banner"

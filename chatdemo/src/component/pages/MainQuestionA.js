@@ -124,6 +124,13 @@ const QuestionDBA = () => {
         // /> */}
         {/* Section Title */}
         <div className="w-[358px] h-7 text-[#182838] text-[22px] font-bold font-['Montserrat'] leading-7">Directed Question</div>
+        <div class="h-6 justify-start items-center gap-2.5 inline-flex">
+          <div class="w-3 h-3 bg-[#d9381f] rounded-[15px]"></div>
+          <div class="text-[#ff0000] text-base font-semibold font-['Montserrat'] leading-normal">Not answered</div>
+          <div class="w-3 h-3 rounded-[15px]"></div>
+          <div class="w-3 h-3 bg-[#0c0c0c] rounded-[15px]"></div>
+          <div class="text-black text-base font-semibold font-['Montserrat'] leading-normal">AI answered</div>
+        </div>
         {/* Question List */}
         <div className="self-stretch grow p-2.5 bg-white rounded-[10px] flex flex-col justify-start items-start gap-2.5">
           <div class="w-[281px] text-[#ff0000] text-base font-semibold font-['Montserrat'] leading-normal">Not answered</div>
