@@ -132,15 +132,9 @@ const QuestionDBQ = () => {
           <div class="w-3 h-3 rounded-[15px]"></div>
           <div class="w-3 h-3 bg-[#9cffab] rounded-[15px]"></div>
           <div class="text-black text-base font-semibold font-['Montserrat'] leading-normal">AI answered</div>
-      </div>
+        </div>
         {/* Question List */}
         <div className="self-stretch grow p-2.5 bg-white rounded-[10px] flex flex-col justify-start items-start gap-2.5">
-        <InfoCard
-            topic="Wire Tied up"
-            author="Bruce Banner"
-            primaryColor="#182838"
-            secondaryColor="#182838"
-        />
         <div class="w-[281px] text-[#161616] text-base font-normal font-['Montserrat'] leading-normal">History</div>
         {/* Example list */}
         </div>
