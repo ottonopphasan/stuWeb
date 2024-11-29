@@ -66,7 +66,7 @@ const QuestionDBQ = () => {
   const navigate = useNavigate();
   return (
     <div className="w-[390px] h-[844px] relative">
-      <div className="w-[390px] h-[844px] left-0 top-0 absolute bg-gradient-to-b from-white to-[#eff4ff]"></div>
+      <div className="w-[390px] h-[844px] left-0 top-0 absolute bg-gradient-to-b from-white to-[#dee5f3]"></div>
       <div className="w-[390px] h-[844px] px-2.5 py-[50px] left-0 top-0 absolute flex flex-col justify-start items-center gap-[5px]">
         {/* Top Bar */}
         <div className="self-stretch px-[26px] flex justify-center items-center gap-[5px]">
@@ -127,16 +127,23 @@ const QuestionDBQ = () => {
         {/* Section Title */}
         <div className="w-[358px] h-7 text-[#182838] text-[22px] font-bold font-['Montserrat'] leading-7">Directed Question</div>
         <div class="h-6 justify-start items-center gap-2.5 inline-flex">
+          <div class="w-3 h-3 bg-[#9cffab] rounded-[15px]"></div>
+          <div class="text-black text-base font-semibold font-['Montserrat'] leading-normal">answered</div>
+          <div class="w-3 h-3 rounded-[15px]"></div>
           <div class="w-3 h-3 bg-[#9cd2ff] rounded-[15px]"></div>
           <div class="text-black text-base font-semibold font-['Montserrat'] leading-normal">Not answered</div>
-          <div class="w-3 h-3 rounded-[15px]"></div>
-          <div class="w-3 h-3 bg-[#9cffab] rounded-[15px]"></div>
-          <div class="text-black text-base font-semibold font-['Montserrat'] leading-normal">AI answered</div>
         </div>
-        {/* Question List */}
+        {/* Question List*/}
         <div className="self-stretch grow p-2.5 bg-white rounded-[10px] flex flex-col justify-start items-start gap-2.5">
+        <InfoCard topic="Inner pier width" fromWho="Bruce Banner" primaryColor="#9cd2ff" secondaryColor="#182838"/>
+        <InfoCard topic="Wire Tied up" fromWho="Bruce Banner" primaryColor="#9cffab" secondaryColor="#182838"/>
         <div class="w-[281px] text-[#161616] text-base font-normal font-['Montserrat'] leading-normal">History</div>
-        {/* Example list */}
+        <div class="text-[#182838]/30 text-base font-medium font-['Montserrat'] leading-normal">Topic : Wire Tied up</div>
+        <div class="text-[#182838]/30 text-base font-medium font-['Montserrat'] leading-normal">Topic : Wire Tied up</div>
+        <div class="text-[#182838]/30 text-base font-medium font-['Montserrat'] leading-normal">Topic : Wire Tied up</div>
+        <div class="text-[#182838]/30 text-base font-medium font-['Montserrat'] leading-normal">Topic : Wire Tied up</div>
+        <div class="text-[#182838]/30 text-base font-medium font-['Montserrat'] leading-normal">Topic : Wire Tied up</div>
+        <div class="text-[#182838]/30 text-base font-medium font-['Montserrat'] leading-normal">Topic : Wire Tied up</div>
         </div>
 
 

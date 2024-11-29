@@ -34,7 +34,7 @@ import React from "react";
 
 const InfoCard = ({ topic, fromWho, primaryColor, secondaryColor }) => {
   return (
-    <div className="h-14 justify-start items-center gap-2.5 inline-flex">
+    <div class="h-[72px] justify-start items-center gap-2.5 inline-flex">
       <div
         className="w-3 h-14 rounded-[15px]"
         style={{ backgroundColor: primaryColor }}
@@ -42,7 +42,7 @@ const InfoCard = ({ topic, fromWho, primaryColor, secondaryColor }) => {
       <div className="w-[238px] flex-col justify-start items-start inline-flex">
         <div
           className="self-stretch text-base font-medium font-['Montserrat'] leading-normal"
-          style={{ color: primaryColor }}
+          style={{ color: secondaryColor }}
         >
           Topic: {topic}
         </div>

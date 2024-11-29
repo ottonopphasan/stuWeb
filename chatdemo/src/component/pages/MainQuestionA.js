@@ -133,8 +133,8 @@ const QuestionDBA = () => {
         </div>
         {/* Question List */}
         <div className="self-stretch grow p-2.5 bg-white rounded-[10px] flex flex-col justify-start items-start gap-2.5">
-          <div class="w-[281px] text-[#ff0000] text-base font-semibold font-['Montserrat'] leading-normal">Not answered</div>
-          <div class="w-[281px] text-black text-base font-normal font-['Montserrat'] leading-normal">AI answered</div>
+          <InfoCard topic="Inner pier width" fromWho="Bruce Banner" primaryColor="#d9381f" secondaryColor="#d9381f"/>
+          <InfoCard topic="Wire Tied up" fromWho="Bruce Banner" primaryColor="#182838" secondaryColor="#182838"/>
           <div class="w-[281px] text-[#161616] text-base font-normal font-['Montserrat'] leading-normal">History</div>
         </div>
 
