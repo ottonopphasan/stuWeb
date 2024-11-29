@@ -3,11 +3,15 @@ from typing import Dict, List
 from groq import Groq
 
 
-os.environ["GROQ_API_KEY"] = "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"
+# os.environ["GROQ_API_KEY"] = "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"
+# os.environ["GROQ_API_KEY"] = "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"
+os.environ["GROQ_API_KEY"] = "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"
 
 LLAMA3_405B_INSTRUCT = "llama-3.1-405b-reasoning" 
 LLAMA3_70B_INSTRUCT = "llama-3.1-70b-versatile"
 LLAMA3_8B_INSTRUCT = "llama3.1-8b-instant"
+HOPE = "llama-3.1-8b-instant"
+HOPE2 = "llama3-70b-8192"
 
 DEFAULT_MODEL = LLAMA3_70B_INSTRUCT
 
@@ -64,5 +68,12 @@ def asking(question, context, history):
     response = prompt_with_rag(
         f"บทบาทของคุณคือผู้ช่วยวิศวกรก่อสร้าง\nโดยมีความรู้ด้านการก่อสร้างและข้อมูลต่อไปนี้ : '{context}'\n โดยคุณจะทราบประวัติการสนทนาจาก {history}\n",  # Retrieved fact
         f"ตอบคำถามค่อไปนี้ {question}?",  # User question
+    )
+    return response
+
+def pagepopout(context, answer):
+    response = prompt_with_rag(
+        f"จากข้อมูลต่อไปนี้ : '{context}'\n ข้อความที่ต้องการให้ดู {answer}\n",  # Retrieved fact
+        f"จงตอบว่าข้อความนี้มาจากหน้าไหนโดยอิงจากข้อมูลที่มี ถ้าสามารถหาคำตอบได้ จงตอบเฉพาะเลขหน้า",  # User question
     )
     return response

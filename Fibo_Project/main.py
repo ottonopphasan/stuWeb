@@ -28,7 +28,7 @@ def read_item(item_id: int):
 def read_item(question: str):
     if type(question) != str:
         raise HTTPException(status_code=404, detail="Invalid input")
-    hope = Chatbot(0)
+    hope = Chatbot()
     return {"answer": hope.bot_api(question)}
 
 @app.post("/items/")

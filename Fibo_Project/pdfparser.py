@@ -294,7 +294,7 @@ class documentPrepare:
 
 
 if __name__ == '__main__':
-
+    print('Hello world')
     # hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\mold_Preparing.pdf'
     # hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=3)
     # hope_doc.main()
@@ -303,10 +303,10 @@ if __name__ == '__main__':
     # hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=2)
     # hope_doc.main()
 
-    # hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\Tunnel_Segment.pdf'
-    # hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=2)
-    # hope_doc.main2([7,8,9,10,11,12,14,17,21,22,29,30,31,38,44,62,65,105,117])
-
-    hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\Method Precast.pdf'
+    hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\Tunnel_Segment.pdf'
     hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=2)
-    hope_doc.main2([8, 17, 20, 31, 43, 50, 51, 52, 53, 65, 66, 89])
+    hope_doc.main2([11,12,17,21,22,29,30,31,38,44,62,63,105,117])
+
+    # hopepdf_path = '.\\Fibo_Project\\Database\\pdf\\Method_Precast.pdf'
+    # hope_doc = documentPrepare(hopepdf_path,250, 239, 130, 154, start_page=2)
+    # hope_doc.main2([8, 17, 20, 31, 43, 50, 51, 52, 53, 65, 66, 89])
