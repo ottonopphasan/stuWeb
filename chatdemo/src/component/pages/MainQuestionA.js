@@ -1,68 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import InfoCard from "../container/Questionbox";
+import { Link, useNavigate } from "react-router-dom";
+import InfoCard from "../container/Questionbox"; // Assuming you have InfoCard component
 
 const QuestionDBA = () => {
-  const [contextBoxes, setContextBoxes] = useState([
-    { id: 1, title: "Context Box 1", content: "This is the content of the first context box." },
-  ]);
+  const [contextBoxes, setContextBoxes] = useState([]); // Initial cards, if any
+  const navigate = useNavigate(); // Initialize navigate hook
 
-  // Function to add a new context box
-  const addNewContextBox = () => {
-    const newId = contextBoxes.length + 1;
-    setContextBoxes([
-      ...contextBoxes,
-      {
-        id: newId,
-        title: `Context Box ${newId}`,
-        content: `This is the content of the added context box ${newId}.`,
-      },
-    ]);
-  };
-
-  const deleteContextBox = (id) => {
-    // Remove the box from the state
-    setContextBoxes(contextBoxes.filter((box) => box.id !== id));
-    // Optionally remove related chat history from localStorage
-    localStorage.removeItem(`chatMessages-${id}`);
-  };
-
-  const [messages, setMessages] = useState([]);
-
-  // Function to retrieve and set messages from localStorage
-  const fetchMessages = () => {
-    const storedMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
-    setMessages(storedMessages); // Update state with the latest messages
-  };
-
-  const addMessage = (message) => {
-    const updatedMessages = [...messages, message];
-    setMessages(updatedMessages);
-    localStorage.setItem("chatMessages", JSON.stringify(updatedMessages)); // Store the new message in localStorage
-  };
-
+  // Load context boxes from localStorage on initial load
   useEffect(() => {
-    // Initial fetch of messages
-    fetchMessages();
+    const savedContextBoxes = JSON.parse(localStorage.getItem("contextBoxes")) || [];
+    setContextBoxes(savedContextBoxes);
+  }, []); // Empty dependency array to run this effect once on component mount
 
-    // Set an interval to check for new messages every 2 seconds
-    const intervalId = setInterval(() => {
-      fetchMessages();
-    }, 2000); // 2 seconds interval
+  // Function to add a new context box with a default topic
+  const addNewContextBox = () => {
+    const newId = Date.now(); // Unique ID using timestamp
+    const newContextBox = {
+      id: newId,
+      topic: `New Topic ${newId}`, // Default topic
+      fromWho: "New User",
+      primaryColor: "#9cd2ff",
+      secondaryColor: "#182838",
+    };
 
-    // Clear the interval when the component is unmounted
-    return () => clearInterval(intervalId);
-  }, []);
-
-  const deleteContextBoxp3 = (id) => {
-    // Remove the box from the state
-    setContextBoxes(contextBoxes.filter((box) => box.id !== id));
-
-    // Optionally remove related chat history from localStorage
-    localStorage.removeItem(`chatMessages-${id}`);
+    // Update state and local storage
+    setContextBoxes((prevBoxes) => {
+      const updatedBoxes = [...prevBoxes, newContextBox];
+      localStorage.setItem("contextBoxes", JSON.stringify(updatedBoxes)); // Save to local storage
+      return updatedBoxes;
+    });
   };
-  const navigate = useNavigate();
+
+  // Function to delete a context box
+  const deleteContextBox = (id) => {
+    setContextBoxes((prevBoxes) => {
+      const updatedBoxes = prevBoxes.filter((box) => box.id !== id);
+      localStorage.setItem("contextBoxes", JSON.stringify(updatedBoxes)); // Update local storage
+      return updatedBoxes;
+    });
+  };
+
   return (
     <div className="w-[390px] h-[844px] relative">
       <div className="w-[390px] h-[844px] left-0 top-0 absolute bg-gradient-to-b from-white to-[#eff4ff]"></div>
@@ -75,13 +52,14 @@ const QuestionDBA = () => {
             Question
           </div>
           <button
-            onClick={() => navigate("/QuestionDashboardQ")}
+            onClick={() => navigate("/QuestionDashboardA")}
             className="h-[26px] px-[5px] bg-[#ff916f]/60 rounded-[5px] shadow-inner flex justify-center items-center gap-2.5"
           >
             <div className="text-center text-[#696b6e] text-[15px] font-normal font-['Montserrat'] leading-relaxed">A</div>
           </button>
           <img className="w-[15px] h-[15px]" src={require("../icon/settingIcon.png")} />
         </div>
+
         {/* Search Bar */}
         <div className="w-[350px] px-3.5 py-[7px] bg-white rounded-[20px] flex justify-start items-center gap-[5px]">
           <img className="w-[15px] h-[15px]" src={require("../icon/searchIcon.png")} />
@@ -90,54 +68,39 @@ const QuestionDBA = () => {
           </div>
         </div>
 
-        {/* Arthiz fill here */}
-                {/* // Blue ANS for Q
-        // <InfoCard
-        //     topic="Wire Tied up"
-        //     author="Bruce Banner"
-        //     primaryColor="#9cd2ff"
-        //     secondaryColor="#182838"
-        // />
-
-        // Green NotANS for Q
-        // <InfoCard
-        //     topic="Wire Tied up"
-        //     author="Bruce Banner"
-        //     primaryColor="#9cffab"
-        //     secondaryColor="#182838"
-        // />
-
-        // RED NotAns for A
-        // <InfoCard
-        //     topic="Wire Tied up"
-        //     author="Bruce Banner"
-        //     primaryColor="#d9381f"
-        //     secondaryColor="#d9381f"
-        // />
-
-        // Black AIAns for A
-        // <InfoCard
-        //     topic="Wire Tied up"
-        //     author="Bruce Banner"
-        //     primaryColor="#182838"
-        //     secondaryColor="#182838"
-        // /> */}
         {/* Section Title */}
         <div className="w-[358px] h-7 text-[#182838] text-[22px] font-bold font-['Montserrat'] leading-7">Directed Question</div>
-        <div class="h-6 justify-start items-center gap-2.5 inline-flex">
-          <div class="w-3 h-3 bg-[#d9381f] rounded-[15px]"></div>
-          <div class="text-[#ff0000] text-base font-semibold font-['Montserrat'] leading-normal">Not answered</div>
-          <div class="w-3 h-3 rounded-[15px]"></div>
-          <div class="w-3 h-3 bg-[#0c0c0c] rounded-[15px]"></div>
-          <div class="text-black text-base font-semibold font-['Montserrat'] leading-normal">AI answered</div>
-        </div>
-        {/* Question List */}
-        <div className="self-stretch grow p-2.5 bg-white rounded-[10px] flex flex-col justify-start items-start gap-2.5">
-          <InfoCard topic="Inner pier width" fromWho="Bruce Banner" primaryColor="#d9381f" secondaryColor="#d9381f"/>
-          <InfoCard topic="Wire Tied up" fromWho="Bruce Banner" primaryColor="#182838" secondaryColor="#182838"/>
-          <div class="w-[281px] text-[#161616] text-base font-normal font-['Montserrat'] leading-normal">History</div>
+        <div className="h-6 justify-start items-center gap-2.5 inline-flex">
+          <div className="w-3 h-3 bg-[#d9381f] rounded-[15px]"></div>
+          <div className="text-[#ff0000] text-base font-semibold font-['Montserrat'] leading-normal">Not answered</div>
+          <div className="w-3 h-3 rounded-[15px]"></div>
+          <div className="w-3 h-3 bg-[#0c0c0c] rounded-[15px]"></div>
+          <div className="text-black text-base font-semibold font-['Montserrat'] leading-normal">AI answered</div>
         </div>
 
+        {/* Question List */}
+        <div className="self-stretch grow p-2.5 bg-white rounded-[10px] flex flex-col justify-start items-start gap-2.5">
+          {contextBoxes.map((box) => (
+            <div key={box.id} className="w-full">
+              <Link
+                to={`/chatroom/${box.id}`} // Link to the chat room with the unique contextId
+              >
+                <InfoCard
+                  topic={box.topic}
+                  fromWho={box.fromWho}
+                  primaryColor={box.primaryColor}
+                  secondaryColor={box.secondaryColor}
+                />
+              </Link>
+              <button
+                onClick={() => deleteContextBox(box.id)} // Delete context box
+                className="text-red-500 text-sm mt-1"
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
 
         {/* Bottom Navigation */}
         <div className="w-[390px] h-16 bg-[#eff4ff]/90 backdrop-blur-md justify-start items-center inline-flex">
@@ -158,13 +121,15 @@ const QuestionDBA = () => {
             <div className="w-[81.50px] text-center text-[#7e858c] text-[10px] font-medium font-['Montserrat'] leading-3">Report</div>
           </Link>
         </div>
+
         {/* Floating Button */}
         <div
           className="left-[320px] top-[675px] absolute justify-start items-center gap-[7px] inline-flex cursor-pointer"
           onClick={addNewContextBox}
         >
-          <img className="w-[11px] h-[19px]" src={require("../icon/backIcon.png")} alt="Back" />
-          <img className="w-[40px] h-[40px]" src={require("../Button/chatBot.png")} alt="Add Box" />
+          <div className="w-[40px] h-[40px] text-center text-white bg-blue-500 rounded-full flex items-center justify-center">
+            +
+          </div>
         </div>
       </div>
     </div>

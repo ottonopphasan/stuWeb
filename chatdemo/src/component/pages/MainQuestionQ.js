@@ -31,6 +31,12 @@ const QuestionDBQ = () => {
     });
   };
 
+  // Function to clear all context boxes
+  const clearContextBoxes = () => {
+    setContextBoxes([]); // Clear state
+    localStorage.removeItem("contextBoxes"); // Clear localStorage
+  };
+
   return (
     <div className="w-[390px] h-[844px] relative">
       <div className="w-[390px] h-[844px] left-0 top-0 absolute bg-gradient-to-b from-white to-[#dee5f3]"></div>
@@ -108,13 +114,15 @@ const QuestionDBQ = () => {
           </Link>
         </div>
 
-        {/* Floating Button with "+" symbol */}
-        <div
-          className="left-[320px] top-[675px] absolute justify-start items-center gap-[7px] inline-flex cursor-pointer"
-          onClick={addNewContextBox} // Create new context box without navigation
-        >
-          <div className="w-[40px] h-[40px] text-center text-white bg-blue-500 rounded-full flex items-center justify-center">
-            +
+        {/* Floating Buttons */}
+        <div className="left-[320px] top-[675px] absolute justify-start items-center gap-[7px] inline-flex cursor-pointer" onClick={addNewContextBox}>
+          <div className="w-[40px] h-[40px] text-center text-white bg-blue-500 rounded-full flex items-center justify-center">+</div>
+        </div>
+
+        {/* Clear Button */}
+        <div className="left-[370px] top-[675px] absolute justify-start items-center gap-[7px] inline-flex cursor-pointer" onClick={clearContextBoxes}>
+          <div className="w-[40px] h-[40px] text-center text-white bg-red-500 rounded-full flex items-center justify-center">
+            X
           </div>
         </div>
       </div>
