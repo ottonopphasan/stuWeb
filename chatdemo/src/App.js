@@ -2,17 +2,15 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import "./index.css";
+import ProjectDashboard from './component/pages/MainHome';
 import QuestionDBA from "./component/pages/MainQuestionA";
 import QuestionDBQ from "./component/pages/MainQuestionQ";
 import ChatDB from "./component/pages/MainChat";
-import ChatPage from "./component/pages/chatMain";
-import DirectedQuestion from "./component/pages/directQuestion";
-import ProjectDashboard from './component/pages/MainHome';
 import ReportDB from "./component/pages/Mainreport";
 import ReportDetails from "./component/pages/reportDB";
 import ReportIP from "./component/pages/reportInput";
 import TimelineRP from "./component/pages/reporttimeline";
-import ChatFunc from "./component/pages/chatFunc";
+import ChatRoom from "./component/pages/ChatRoom"; // Import new component
 
 function App() {
   return (
@@ -28,9 +26,7 @@ function App() {
           <Route path="/reportTimeline" element={<TimelineRP />} />
           <Route path="/reportInput" element={<ReportIP />} />
           <Route path="/reportOutput" element={<ReportDetails />} />
-          <Route path="/chat" element={<ChatPage />} />
-          <Route path="/directedQuestion" element={<DirectedQuestion />} />
-          <Route path="/chat/:id" element={<ChatFunc />} />
+          <Route path="/chatroom/:contextId" element={<ChatRoom />} /> {/* New route */}
         </Routes>
       </div>
     </Router>
