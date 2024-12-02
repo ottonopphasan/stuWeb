@@ -26,7 +26,8 @@ function App() {
           <Route path="/reportTimeline" element={<TimelineRP />} />
           <Route path="/reportInput" element={<ReportIP />} />
           <Route path="/reportOutput" element={<ReportDetails />} />
-          <Route path="/chatroom/:contextId" element={<ChatRoom />} /> {/* New route */}
+          <Route path="/chatroom/:contextId/q" element={<ChatRoom roomType="ChatQ" />} />
+          <Route path="/chatroom/:contextId/a" element={<ChatRoom roomType="ChatA" />} />
         </Routes>
       </div>
     </Router>

@@ -1,140 +1,147 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-const ChatRoom = () => {
-  const { contextId } = useParams();
+const ChatRoom = ({ roomType }) => {
+  const { contextId } = useParams(); // Get contextId from the URL params
   const [messages, setMessages] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
-  const [topic, setTopic] = useState("");
+  const [aiAnswered, setAiAnswered] = useState(false);
+  const [uAnswered, setUAnswered] = useState(false);
   const navigate = useNavigate();
 
-  // Load messages and topic from localStorage when the component mounts
-  useEffect(() => {
+  // Use useLayoutEffect to load state before render
+  useLayoutEffect(() => {
+    // Load individual messages for the specific contextId
     const storedMessages = JSON.parse(localStorage.getItem(`chat_${contextId}`)) || [];
     setMessages(storedMessages);
 
-    const storedTopic = localStorage.getItem(`topic_${contextId}`) || "";
-    setTopic(storedTopic);
-  }, [contextId]);
+    // Load aiAnswered and uAnswered states for this contextId
+    const storedAiAnswered = JSON.parse(localStorage.getItem(`aiAnswered_${contextId}`)) || false;
+    setAiAnswered(storedAiAnswered);
 
-  // Save messages and topic to localStorage whenever they change
-  useEffect(() => {
+    const storedUAnswered = JSON.parse(localStorage.getItem(`uAnswered_${contextId}`)) || false;
+    setUAnswered(storedUAnswered);
+  }, [contextId]); // Reload when contextId changes
+
+  // Save messages for the current room and shared states (aiAnswered, uAnswered)
+  useLayoutEffect(() => {
     if (messages.length > 0) {
-      localStorage.setItem(`chat_${contextId}`, JSON.stringify(messages));
+      localStorage.setItem(`chat_${contextId}`, JSON.stringify(messages)); // Save chat history per room
     }
-    if (topic) {
-      localStorage.setItem(`topic_${contextId}`, topic);
-      // Update the topic in the corresponding card in QuestionDBQ
-      const contextBoxes = JSON.parse(localStorage.getItem("contextBoxes")) || [];
-      const updatedBoxes = contextBoxes.map((box) =>
-        box.id === parseInt(contextId) ? { ...box, topic: topic } : box
-      );
-      localStorage.setItem("contextBoxes", JSON.stringify(updatedBoxes)); // Save updated context boxes
+
+    // Only save aiAnswered and uAnswered if they are not already true
+    if (aiAnswered) {
+      localStorage.setItem(`aiAnswered_${contextId}`, JSON.stringify(true));
     }
-  }, [messages, topic, contextId]);
+
+    if (uAnswered) {
+      localStorage.setItem(`uAnswered_${contextId}`, JSON.stringify(true));
+    }
+  }, [messages, aiAnswered, uAnswered, contextId]); // Save on state change
 
   // Handle sending a message
   const handleSendMessage = async () => {
-    if (currentMessage.trim() === "" || topic.trim() === "") return;
+    if (currentMessage.trim() === "") return;
 
-    const userMessage = { type: "user", content: currentMessage, topic };
+    const newMessage = {
+      type: roomType === "ChatQ" ? "questioner" : "answerer",
+      content: currentMessage,
+    };
 
-    // Send the user message to the chatbot API
-    const botResponse = await getBotResponse(currentMessage);
-    const newTopic = determineNewTopic(botResponse);
-    const botMessage = { type: "bot", content: botResponse, topic: newTopic };
+    // Update messages for the specific room
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-    setTopic(newTopic);
-    setMessages((prevMessages) => [...prevMessages, userMessage, botMessage]);
+    if (roomType === "ChatQ") {
+      // Simulate AI response
+      const botResponse = await simulateAiResponse(currentMessage);
+
+      if (botResponse) {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { type: "bot", content: botResponse },
+        ]);
+        setAiAnswered(true); // AI answered the question
+      }
+    } else if (roomType === "ChatA") {
+      setUAnswered(true); // User from ChatA answered
+    }
 
     setCurrentMessage("");
   };
 
-  // Fetch response from the chatbot API (replace with your real API endpoint)
-  const getBotResponse = async (userMessage) => {
-    // Replace with an actual API request, for example:
-    // const response = await fetch("https://your-chatbot-api.com/ask", {
-    //   method: "POST",
-    //   body: JSON.stringify({ message: userMessage }),
-    //   headers: { "Content-Type": "application/json" }
-    // });
-    // const data = await response.json();
-    // return data.response;
-
-    // For now, using a simulated response
-    return `You said: ${userMessage}. The bot is thinking...`;
+  // Simulate AI response (replace with your API call if needed)
+  const simulateAiResponse = async (userMessage) => {
+    if (userMessage.toLowerCase().includes("unknown")) {
+      return null; // Simulate no AI answer
+    }
+    return `AI says: I can answer "${userMessage}"!`; // Simulate AI answer
   };
 
-  // Function to determine if the topic should change based on bot's response
-  const determineNewTopic = (botResponse) => {
-    // You can add logic here to detect new topics based on the response
-    if (botResponse.includes("thinking")) {
-      return "Thinking Topic"; // Set a new topic if certain conditions are met
+  // Determine message alignment based on roomType
+  const getMessageAlignment = (message) => {
+    if (roomType === "ChatQ") {
+      return message.type === "questioner" ? "justify-end" : "justify-start";
+    } else {
+      return message.type === "answerer" ? "justify-end" : "justify-start";
     }
-    return topic;
   };
 
   return (
-    <div className="w-[390px] h-[844px] flex-col justify-center items-center inline-flex bg-gradient-to-b from-white to-[#c6d6f8]">
+    <div className="w-[390px] h-[844px] flex flex-col bg-gradient-to-b from-white to-[#c6d6f8]">
       {/* Header */}
-      <div className="self-stretch py-4 flex-col justify-start items-center gap-2 inline-flex">
-        <div className="self-stretch px-2.5 flex justify-between items-center">
-          <button onClick={() => navigate("/QuestionDashboardQ")} className="w-[11px] h-[20px]">
-            <img className="w-[11px] h-[20px]" src={require("../icon/backIcon.png")} alt="Back" />
-          </button>
-          <div className="text-center text-[#183138] text-lg font-normal font-['Montserrat']">Directed Question</div>
-          <img className="w-[19px] h-[19px]" src={require("../icon/settingIcon.png")} alt="Settings" />
-        </div>
-        <div className="self-stretch text-center text-[#3e3e3e] text-sm font-normal font-['Montserrat']">
-          Type your question below and it will be directed
-        </div>
+      <div className="py-4 px-2 flex justify-between items-center">
+        <button
+          onClick={() =>
+            navigate(roomType === "ChatQ" ? "/QuestionDashboardQ" : "/QuestionDashboardA")
+          }
+          className="text-blue-500"
+        >
+          Back
+        </button>
+        <h1 className="text-lg font-bold">
+          {roomType === "ChatQ" ? "Chat Room Q" : "Chat Room A"}
+        </h1>
       </div>
 
-      {/* Topic Input */}
-      <div className="w-full px-[19px] py-2 flex flex-col gap-2">
-        <label className="text-[#1e1f20] text-base font-['Montserrat']">Topic:</label>
-        <input
-          value={topic}
-          onChange={(e) => setTopic(e.target.value)}
-          className="w-full h-10 px-4 py-2 bg-[#eedede] rounded-lg text-[#1e1f20] text-base font-['Montserrat'] leading-normal"
-          placeholder="Enter topic"
-        />
-      </div>
-
-      {/* Chat Room */}
-      <div className="flex-1 w-full px-4 py-2 overflow-y-auto flex flex-col gap-4 bg-[#f5ebeb7c]">
+      {/* Chat History */}
+      <div className="flex-1 px-4 py-2 overflow-y-auto bg-[#f5f5f5]">
         {messages.map((message, index) => (
-          <div key={index} className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}>
+          <div key={index} className={`flex ${getMessageAlignment(message)} mb-2`}>
             <div
-              className={`max-w-[70%] p-3 rounded-lg ${message.type === "user" ? "bg-blue-500 text-white" : "bg-gray-300 text-black"}`}
+              className={`px-4 py-2 rounded-lg ${
+                message.type === (roomType === "ChatQ" ? "questioner" : "answerer")
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300 text-black"
+              }`}
             >
-              <p className="text-xs text-gray-500">{message.type === "user" ? "User" : message.topic}</p>
-              <p>{message.content}</p>
+              {message.content}
             </div>
           </div>
         ))}
       </div>
 
       {/* Input Section */}
-      <div className="w-full px-[19px] py-2 bg-white flex items-center gap-3 border-t">
-        <img className="w-[28px] h-[27px]" src={require("../icon/listIcon.png")} alt="List" />
+      <div className="p-4 flex items-center bg-white">
         <textarea
           value={currentMessage}
           onChange={(e) => setCurrentMessage(e.target.value)}
-          className="flex-1 h-10 px-4 py-2 bg-[#eedede] rounded-lg text-[#1e1f20] text-base font-['Montserrat'] leading-normal"
-          placeholder="Type a Question..."
+          className="flex-1 px-4 py-2 border rounded-lg"
+          placeholder={
+            roomType === "ChatQ" ? "Type your question..." : "Type your answer..."
+          }
         ></textarea>
-        <img
-          className="w-[15px] h-[20px] cursor-pointer"
-          src={require("../icon/micIcon.png")}
-          alt="Mic"
-        />
-        <img
+        <button
           onClick={handleSendMessage}
-          className="w-[17.90px] h-[18px] cursor-pointer"
-          src={require("../icon/sentIcon.png")}
-          alt="Send"
-        />
+          className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+        >
+          Send
+        </button>
+      </div>
+
+      {/* Status Display */}
+      <div className="p-4 bg-gray-100 text-sm">
+        <p>AI Answered: {aiAnswered ? "Yes" : "No"}</p>
+        <p>User Answered: {uAnswered ? "Yes" : "No"}</p>
       </div>
     </div>
   );
