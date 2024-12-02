@@ -12,15 +12,17 @@ const QuestionDBA = () => {
     setContextBoxes(savedContextBoxes);
   }, []); // Empty dependency array to run this effect once on component mount
 
-  // Function to add a new context box with a default topic
+  // Function to add a new context box with a default topic and random AI answer status
   const addNewContextBox = () => {
     const newId = Date.now(); // Unique ID using timestamp
+    const canAnswer = Math.random() > 0.5; // Randomly determine if AI can answer
     const newContextBox = {
       id: newId,
       topic: `New Topic ${newId}`, // Default topic
       fromWho: "New User",
-      primaryColor: "#9cd2ff",
+      primaryColor: canAnswer ? "#0c0c0c" : "#d9381f", // Black if AI can answer, Red if it can't
       secondaryColor: "#182838",
+      canAnswer: canAnswer, // Set whether AI can answer the question
     };
 
     // Update state and local storage
@@ -52,7 +54,7 @@ const QuestionDBA = () => {
             Question
           </div>
           <button
-            onClick={() => navigate("/QuestionDashboardA")}
+            onClick={() => navigate("/QuestionDashboardQ")}
             className="h-[26px] px-[5px] bg-[#ff916f]/60 rounded-[5px] shadow-inner flex justify-center items-center gap-2.5"
           >
             <div className="text-center text-[#696b6e] text-[15px] font-normal font-['Montserrat'] leading-relaxed">A</div>
@@ -88,7 +90,7 @@ const QuestionDBA = () => {
                 <InfoCard
                   topic={box.topic}
                   fromWho={box.fromWho}
-                  primaryColor={box.primaryColor}
+                  primaryColor={box.primaryColor} // Color based on AI answer ability
                   secondaryColor={box.secondaryColor}
                 />
               </Link>
@@ -108,7 +110,7 @@ const QuestionDBA = () => {
             <img className="w-[15px] h-[16.9px]" src={require("../icon/homeIcon.png")} alt="Home" />
             <div className="w-[81.50px] text-center text-[#7e858c] text-[10px] font-medium font-['Montserrat'] leading-3">Home</div>
           </Link>
-          <Link to="/ChatDashboardQ" className="w-[97.50px] px-2 pt-[14.50px] pb-2 flex-col justify-end items-center gap-[10.96px] inline-flex">
+          <Link to="/ChatDashboard" className="w-[97.50px] px-2 pt-[14.50px] pb-2 flex-col justify-end items-center gap-[10.96px] inline-flex">
             <img className="w-[19px] h-[19px]" src={require("../icon/chatIcon.png")} alt="Chat" />
             <div className="w-[81.50px] text-center text-[#7e858c] text-[10px] font-medium font-['Montserrat'] leading-3">Chat</div>
           </Link>
