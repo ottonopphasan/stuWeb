@@ -1,53 +1,68 @@
-question,answer
-วัสดุซ่อม ที่ใช้ซ่อม Defect แต่ละอย่าง ใช้อะไรบ้าง,"Based on the provided information, I can respond to the question:
+question,answer,page
+วัสดุซ่อม ที่ใช้ซ่อม Defect แต่ละอย่าง ใช้อะไรบ้าง,"ตอบคำถามของคุณ:
 
-The repair materials used to repair each defect are as follows:
+ตามเอกสารที่ให้มา วัสดุซ่อมที่ใช้ซ่อม Defect แต่ละอย่าง ได้แก่:
 
-* For repairing cracks, Sikadur 52 TH SIKA, Sikadur 32 TH SIKA, and Condur SCC CORMIX are used.
-* For repairing concrete surfaces, SikaSkimCoat, Renderoc Skim Coat FOSROC, ปูนฉาบแต่งตราผึ้ง 124, ปูนฉาบแต่งตราผึ้ง 124L, and Conpatch 300 CORMIX are used.
-* For repairing high-strength concrete, ปูนฉาบซ่อมกำลังอัดสูงเบอร์135/135F is used.
-* For bonding concrete, Sikadur 32 TH SIKA is used.
+1. สำหรับ Defect ที่เป็นรอยแตกหรือรอยแตกบิ่น ควรใช้ปูนฉาบซ่อมกำลังอัดสูง เช่น ปูนฉาบซ่อมกำลังอัดสูงเบอร์135/135F หรือปูนฉาบซ่อมกำลังอัดสูงเบอร์185/185F
+2. สำหรับ Defect ที่เป็นรอยร้าวหรือรอยร้าวที่มีความเสียหายอย่างรุนแรง ควรใช้อีพ็อกซีมอร์ตาร์ เช่น Sikadur 32 TH
+3. สำหรับ Defect ที่เป็นรอยแตกหรือรอยแตกบิ่นที่มีความเสียหายอย่างรุนแรง ควรใช้วัสดุเชื่อมประสานคอนกรีต เช่น Sikadur 32 TH
+4. สำหรับ Defect ที่เป็นรอยร้าวหรือรอยร้าวที่มีความเสียหายอย่างรุนแรง ควรใช้อีพ็อกซีเรซิน เช่น Condur SCC
 
-These materials are used in combination with various tools and equipment, such as blowers, brushes, rollers, and sandpaper, to prepare the surface and apply the repair material.
+โปรดทราบว่าข้อมูลเหล่านี้เป็นเพียงการอ้างอิงจากเอกสารที่ให้มา และควรตรวจสอบข้อมูลเพิ่มเติมก่อนการใช้วัสดุซ่อมจริง",ข้อความนี้มาจากหน้า 29
+ปูนฉาบแต่งพิเศษ 124 Lใช้งานอย่างไร,"ตอบคำถามของคุณ
 
-Please note that the specific material used may depend on the type and severity of the defect, as well as the environmental conditions and other factors."
-ปูนฉาบแต่งพิเศษ 124 Lใช้งานอย่างไร,"Based on the provided information, I can answer the question as follows:
+ปูนฉาบแต่งพิเศษ 124 L เป็นวัสดุที่ใช้ในการซ่อมแซมและฉาบผิวคอนกรีต โดยมีคุณสมบัติพิเศษในการรักษาความทนทานและความแข็งแรงของพื้นผิวคอนกรีต
 
-ปูนฉาบแต่งพิเศษ 124 L ใช้งานอย่างไร?
+ขั้นตอนการใช้งานปูนฉาบแต่งพิเศษ 124 L ดังนี้
 
-According to page_63, ปูนฉาบแต่งพิเศษ 124 L is a type of mortar for concrete surface repair. The usage instructions are as follows:
+1. ทำความสะอาดพื้นผิวให้สะอาด ปราศจากสิ่งสกปรก เศษวัสดุ คราบน้ำมัน สี และอื่นๆ ด้วยน้ำ และปล่อยให้ทั้งหมดก่อนฉาบหรือรีดบนพื้นผิว
+2. อัตราส่วนผสม: 1 ถุง 20 กก. ผสมน้ำ 75-85 ลิตร โดยผสมให้เป็นเนื้อเดียวกัน (ควรใช้สว่านในการผสมกรณีที่ผสมครั้งละ 1 ถุง)
+3. สามารถฉาบ, รีด, โตย ใช้เกรียงไม้หรือเกรียงขัดมัน โดยให้มีความทา 1-2 มม.
+4. หากต้องการความหนา 2 มม. ควรฉาบหรือรีดทีละชั้นๆ ละไม่เกิน 2 มม.
 
-1. Clean the surface to be repaired, making sure it is free from dirt, oil, and other contaminants.
-2. Mix the mortar with water in a ratio of 1:0.4 by weight.
-3. Apply the mixed mortar to the prepared surface, spreading it evenly to a thickness of 1-2 mm.
-4. If a thicker layer is required, apply multiple layers, allowing each layer to dry before applying the next one.
-5. Finish the surface with a trowel or float.
+การเก็บรักษาปูนฉาบแต่งพิเศษ 124 L ควรเก็บในที่ร่ม ไม่ขึ้นอากาศ ถ่ายเทสะดวก
 
-Note: The mortar should be used within 1 hour of mixing, and it is not recommended to add more water during application. Additionally, the surface should be protected from rain and water during the curing process."
-ปูน 124 L เก็บรักษาอย่างไร,"Based on the provided information, I can answer the question as follows:
+คำแนะนำในการใช้งานปูนฉาบแต่งพิเศษ 124 L
 
-ปูน 124 L เก็บรักษาอย่างไร?
+1. ควรใช้ให้ทหมดภายใน 1 ชั่วโมงหลังจากผสมน้ำแล้ว
+2. ไม่ควรเติมน้ำอีกในระหว่างการใช้งาน
+3. ห้ามนําปูนที่เงิ่มฝน การเช็ทตัวแล้วมาใช้
+4. ปรึกษาเจ้าหน้าที่ฝ่ายเทคนิคของบริษัทฯ เพื่อการใช้งานที่เหมาะสม",ข้อความนี้มาจากหน้า 105
+ปูน 124 L เก็บรักษาอย่างไร,"', ปูน 124 L สามารถเก็บได้ในที่ร่ม ไม่ขึ้นอากาศ ถ่ายเทสะดวก ควรเก็บในภาชนะที่ปิดสนิทเพื่อป้องกันการเกิดฝุ่นหรือสิ่งสกปรกอื่นๆ ที่อาจทำให้ปูนเสียหายได้'","ข้อความที่ต้องการให้ดูเกี่ยวกับปูน 124 L คือ:
 
-เก็บในที่ร่ม ไม่ขึ้นอากาศ ถ่ายเทสะดวก
+'ปูนฉาบแต่งตราผึ้ง 124L ปูน:น้ำ = 1:0.4 โดยน้ำหนัก'
 
-This means that the storage of ปูน 124 L should be in a shaded area, away from direct sunlight, and in a well-ventilated space."
-ปูนฉาบ 135 F คืออะไร,"Based on the provided information, I can answer the question:
+ข้อความนี้มาจากหน้า 38"
+ปูนฉาบ 135 F คืออะไร,"ตอบคำถามของคุณ: ปูนฉาบ 135 F คือปูนฉาบซ่อมกำลังอัดสูงเบอร์ 135/135F ซึ่งเป็นปูนฉาบที่มีคุณสมบัติในการรับกำลังอัดและสามารถใช้กับงานโครงสร้างคอนกรีตต่างๆ นอกจากนี้ยังสามารถใช้น้ำยาประสานทารองพื้นได้ และมีประโยชน์ในการใช้งานในหลายกรณี เช่น ฉาบทลายชั้น, งานซ่อมโครงสร้างคอนกรีตรับแรงต่างๆ และอื่นๆ",ข้อความนี้มาจากหน้า 117
+Sikadur 32 TH คุณลักษณะอย่างไร,"ตอบคำถามของคุณ:
 
-ปูนฉาบ 135 F คือ ปูนฉาบซ่อมกำลังอัดสูงเบอร์135/135F ซึ่งเป็นปูนฉาบซ่อมกำลังอัดสูงสำหรับซ่อมแซมคอนกรีตที่มีความเสียหายประเภทต่างๆ โดยมีส่วนผสมของ Cellulose Fiber ที่จะทำให้เกิดปัญหาในภายหน้าได้ และมีคุณสมบัติในการรับกำลังอัดหรือพ่นทรายเพื่อให้คอนกรีตที่ไม่ดีออกอย่างน้อย 10-20 ได้เร็วและสูง สามารถใช้กับงานโครงสร้างคอนกรีตต่างๆ และสามารถใช้น้ำยาประสานทารองพื้นได้"
-Sikadur 32 TH คุณลักษณะอย่างไรSikadur 32 TH ใช้งานอย่างไร,"Based on the provided information, I can answer the question as follows:
+Sikadur 32 TH เป็นสารเชื่อมประสานที่มีคุณสมบัติอย่างดี มีคุณสมบัติหลักๆ ดังนี้
 
-Sikadur 32 TH is a solvent-free, 2-component bonding agent based on selected epoxy resins. Its characteristics include:
+- เป็นสารเชื่อมประสานที่มีความแรงและความแข็งแรงสูง
+- สามารถใช้ในการเชื่อมประสานกับวัสดุหลากหลาย เช่น คอนกรีต, มasonry, และ brick
+- ไม่ถูกสัมผัสกับความชื้น
+- สามารถใช้ได้แม้พื้นผิวจะชื้น
+- มีความปลอดภัยสูง ไม่มีสารพิษหรือสารอันตราย
 
-* Unaffected by moisture
-* Highly effective even on damp surfaces
-* Provides a bond of far greater strength than the tensile strength
-* Suitable for use wherever structural bonding of new concrete is required
+นอกจากนี้ยังมีคุณสมบัติอื่นๆ ที่เป็นประโยชน์ เช่น
 
-As for its usage, Sikadur 32 TH can be used as a bonding agent on concrete, and its application involves:
+- สามารถใช้ในการซ่อมแซมรอยแตกบิ่น
+- สามารถใช้ในการเชื่อมประสานกับวัสดุหลากหลาย
+- มีความสามารถในการรับแรงต้านทานสูง
 
-* Mixing both components together with a slow speed electric drill
-* Applying directly to the prepared substrate by brush, roller, or spray
-* Ensuring good brushing on damp surfaces
-* Pouring new concrete
+โดยรวมแล้ว Sikadur 32 TH เป็นสารเชื่อมประสานที่มีคุณสมบัติอย่างดีและมีความปลอดภัยสูง สามารถใช้ในการซ่อมแซมและเชื่อมประสานได้อย่างมีประสิทธิภาพ",ข้อความนี้มาจากหน้า 62
+Sikadur 32 TH ใช้งานอย่างไร,"'ตอบคำถามคุณว่า Sikadur 32 TH เป็นสารผสมอีพ็อกซี่ที่ใช้ในการเชื่อมประสานคอนกรีต และมีคุณสมบัติที่ดีในการเชื่อมประสานคอนกรีตได้ดี โดยมีข้อกำหนดในการใช้งานดังนี้
 
-It is also important to follow the recommended surface preparation, mixing, and application procedures to obtain the desired performance characteristics."
+1. ทำความสะอาดพื้นผิวที่จะเชื่อมประสานให้สะอาดและปราศจากสิ่งสกปรก
+2. ผสมสารผสมอีพ็อกซี่ Sikadur 32 TH ตามอัตราส่วน A:B = 2:1 โดยน้ำหนัก
+3. ใช้เครื่องผสมหรือสว่านในการผสมสารผสม
+4. นำสารผสมที่ผสมแล้วไปใช้บนพื้นผิวที่จะเชื่อมประสาน
+5. ใช้เครื่องมือที่เหมาะสมในการเชื่อมประสาน เช่น ไม้หรือเกรียงขัดมัน
+
+ข้อควรระวังในการใช้งาน Sikadur 32 TH คือ
+
+1. ควรใช้สารผสมที่ผสมแล้วภายใน 30 นาทีหลังจากผสม
+2. ควรใช้สารผสมบนพื้นผิวที่สะอาดและปราศจากสิ่งสกปรก
+3. ควรใช้เครื่องมือที่เหมาะสมในการเชื่อมประสาน
+
+หากคุณมีคำถามเพิ่มเติมเกี่ยวกับการใช้งาน Sikadur 32 TH คุณสามารถถามได้เลย'",ข้อความนี้มาจากหน้า 62

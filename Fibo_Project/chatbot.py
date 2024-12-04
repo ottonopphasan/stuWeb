@@ -49,24 +49,27 @@ class Chatbot:
     
 
     
-
+               
 
     def botTest(self, context, question):
         ans_list = []
+        page_list = []
         history = ''
 
-        print(len(context))
         for q in question:
             #question = input("คุณ: ")
             print(f"คำถาม: {q}")
             conv = asking(q, context, history)
+            page = pagepopout(context, conv)
             ans_list.append(conv)
+            page_list.append(page)
             #history += f'conversation{i}\n==============\n{q}\n==============n{conv}\n'
             #print(f"คำตอบ: {conv}")
         
         dataframe = {
             'question': question,
             'answer': ans_list,
+            'page': page_list
         }
         #print(dataframe)
         df = pd.DataFrame(dataframe)
@@ -153,45 +156,45 @@ if __name__ == "__main__":
     #                 "Sikadur 32 TH คุณลักษณะอย่างไร"
     #                 ]
 
-    # question1 = ["ระยะหุ้มคอนกรีตด้านล่าง และด้านข้างเท่าเท่าไหร่ในงาน Precast อุโมงค์",
-    #              "Tolerance ของระยะหุ้มคอนกรีต ในงาน Precast อุโมงค์ +- เท่าใด",
-    #              "Concrete ใช้ Mix Code อะไร",
-    #              "เกณฑ์การยอมรับ Tolerance ของ Segment มีอะไรบ้าง",
-    #              "การประกอบ Assembly งานอุโมงค์ มีข้อกำหนดทดสอบ หล่อกี่ Ring จึงทดสอบ"
-    #              ]
+    question1 = ["ระยะหุ้มคอนกรีตด้านล่าง และด้านข้างเท่าเท่าไหร่ในงาน Precast อุโมงค์",
+                 "Tolerance ของระยะหุ้มคอนกรีต ในงาน Precast อุโมงค์ +- เท่าใด",
+                 "Concrete ใช้ Mix Code อะไร",
+                 "เกณฑ์การยอมรับ Tolerance ของ Segment มีอะไรบ้าง",
+                 "การประกอบ Assembly งานอุโมงค์ มีข้อกำหนดทดสอบ หล่อกี่ Ring จึงทดสอบ"
+                 ]
 
-    # question2 = [
-    #             "วิธีการตรวจเหล็กเสริมคอนกรีต มีวิธีใดบ้าง",
-    #                 ]
+    question2 = [
+                "วิธีการตรวจเหล็กเสริมคอนกรีต มีวิธีใดบ้าง",
+                    ]
 
-    # question3 = ["Defect Void มีขนาดเท่าไหร่ ถึงจะซ่อม",
-    #              "วัสดุซ่อม ที่ใช้ซ่อม Defect แต่ละอย่าง ใช้อะไรบ้าง"]
+    question3 = ["Defect Void มีขนาดเท่าไหร่ ถึงจะซ่อม",
+                 "วัสดุซ่อม ที่ใช้ซ่อม Defect แต่ละอย่าง ใช้อะไรบ้าง"]
     
-    # question4 = ["วัสดุซ่อม ที่ใช้ซ่อม Defect แต่ละอย่าง ใช้อะไรบ้าง",
-    #              "ปูนฉาบแต่งพิเศษ 124 Lใช้งานอย่างไร",
-    #              "ปูน 124 L เก็บรักษาอย่างไร",
-    #              "ปูนฉาบ 135 F คืออะไร",
-    #              "Sikadur 32 TH คุณลักษณะอย่างไร"
-    #              "Sikadur 32 TH ใช้งานอย่างไร"]
+    question4 = ["วัสดุซ่อม ที่ใช้ซ่อม Defect แต่ละอย่าง ใช้อะไรบ้าง",
+                 "ปูนฉาบแต่งพิเศษ 124 Lใช้งานอย่างไร",
+                 "ปูน 124 L เก็บรักษาอย่างไร",
+                 "ปูนฉาบ 135 F คืออะไร",
+                 "Sikadur 32 TH คุณลักษณะอย่างไร",
+                 "Sikadur 32 TH ใช้งานอย่างไร"]
     
     # bot.createContext("mold_Preparing")
     # bot.createContext("Method_Precast")
     # bot.createContext("segment_repairing")
     # bot.createContext("Tunnel_Segment")
     
-    context1 = bot.pullContext("Method_Precast")
-    context2 = bot.pullContext("mold_Preparing")
-    context3 = bot.pullContext("segment_repairing")
+    # context1 = bot.pullContext("Method_Precast")
+    # context2 = bot.pullContext("mold_Preparing")
+    #context3 = bot.pullContext("segment_repairing")
     context4 = bot.pullContext("Tunnel_Segment")
 
-    print(len(context1))
-    print(context2)
-    print(len(context3))
+    # print(len(context1))
+    # print(context2)
+    # print(len(context3))
     print(len(context4))    
 
     # bot.botTest(context1, question1)
     # bot.botTest(context2, question2)
     # bot.botTest(context3, question3)
-    # bot.botTest(context4, question4)
+    bot.botTest(context4, question4)
 
     # bot.main()

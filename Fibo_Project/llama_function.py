@@ -5,7 +5,13 @@ from groq import Groq
 
 # os.environ["GROQ_API_KEY"] = "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"
 # os.environ["GROQ_API_KEY"] = "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"
-os.environ["GROQ_API_KEY"] = "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"
+
+# athit.jake
+#os.environ["GROQ_API_KEY"] = "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"
+# kmutt 
+# os.environ["GROQ_API_KEY"] = "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"
+# mail kmutt
+os.environ["GROQ_API_KEY"] = "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"
 
 LLAMA3_405B_INSTRUCT = "llama-3.1-405b-reasoning" 
 LLAMA3_70B_INSTRUCT = "llama-3.1-70b-versatile"
