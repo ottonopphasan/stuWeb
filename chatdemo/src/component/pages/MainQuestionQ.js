@@ -120,11 +120,11 @@ const QuestionDBQ = () => {
             <img className="w-[16px] h-[18px]" src={require("../icon/reportIcon.png")} alt="Report" />
             <div className="w-[81.50px] text-center text-[#7e858c] text-[10px] font-medium font-['Montserrat'] leading-3">Report</div>
           </Link>
-        {/* Floating Buttons */}
-        <div className="left-[320px] top-[675px] absolute cursor-pointer" onClick={addNewContextBox}>
-          <div className="w-[40px] h-[40px] text-center text-white bg-blue-500 rounded-full flex items-center justify-center">+</div>
-        </div>
       </div>
+      </div>
+      {/* Floating Buttons */}
+      <div className="left-[320px] top-[675px] absolute cursor-pointer" onClick={addNewContextBox}>
+        <div className="w-[40px] h-[40px] text-center text-white bg-blue-500 rounded-full flex items-center justify-center">+</div>
       </div>
     </div>
   );
