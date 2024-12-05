@@ -56,13 +56,13 @@ const ReportDetails = () => {
               <div className="pr-[11px] justify-start items-center gap-4 inline-flex">
                 {/* Report Image Placeholder with Rounded Corners */}
                 <div className="w-[72px] h-[72px] relative rounded-[10px] flex-col justify-start items-start flex">
-                  <div className="w-[72px] h-[72px] left-0 top-0 absolute bg-[#cacaca]"></div>
-                  <div className="w-[43px] h-[43px] left-[14px] top-[15px] absolute">
-                    <div className="w-[34.04px] h-[32.25px] left-[5.38px] top-[7.17px] absolute">
+                  <div className="w-[71px] h-[71px] left-0 top-0 rounded-[11px] absolute bg-[#cacaca]"></div>
+                  <div className="w-[43px] h-[43px] left-[14px] top-[15px] ">
+                    <div className="w-[87px] h-[87px] rounded-[11px] absolute">
                       <img
-                        src={require('../icon/addphotoIcon.png')} // Replace with actual image path
+                        src={require('../icon/update1.png')} // Replace with actual image path
                         alt="Report Image"
-                        className="w-full h-full object-cover rounded-full"
+                        //className="w-[87px] h-[87px] rounded-[11px]"
                       />
                     </div>
                   </div>

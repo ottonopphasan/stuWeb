@@ -1,7 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const ChatDB = () => {
+  const navigate = useNavigate();
+  const handleCardClick = () => {
+    navigate(`/chatroom/chat`, { state: true });
+  };
+
   return (
     <div className="w-[390px] h-[844px] bg-white flex-col justify-center items-center inline-flex">
     <div className="self-stretch grow shrink basis-0 px-2.5 py-[50px] bg-gradient-to-b from-white to-[#eff4ff] flex-col justify-start items-center gap-[5px] inline-flex">
@@ -22,9 +28,14 @@ const ChatDB = () => {
     <div class="h-[603px] px-[30px] pt-3.5 bg-white/0 flex-col justify-start items-start gap-2.5 inline-flex">
         {/* <!-- Profile Card 1 --> */}
         <div class="h-[72px] p-px justify-between items-center inline-flex">
+            <button
+                onClick={() => handleCardClick()}
+                // className="w-full cursor-pointer"
+              >
+            </button>
             <img
             class="w-16 h-16 rounded-lg object-cover"
-            src="https://via.placeholder.com/70x70"
+            src={require("../icon/people1.png")}
             alt="Ranong Yala"
             />
             <div class="w-5 h-[70px] relative"></div>
@@ -38,7 +49,7 @@ const ChatDB = () => {
         <div class="h-[72px] p-px justify-between items-center inline-flex">
             <img
             class="w-16 h-16 rounded-lg object-cover"
-            src="https://via.placeholder.com/70x70"
+            src={require("../icon/people2.png")}
             alt="Suvee Srigaew"
             />
             <div class="w-5 h-[70px] relative"></div>
@@ -52,7 +63,7 @@ const ChatDB = () => {
         <div class="h-[72px] p-px justify-between items-center inline-flex">
             <img
             class="w-16 h-16 rounded-lg object-cover"
-            src="https://via.placeholder.com/70x70"
+            src={require("../icon/people3.png")}
             alt="Aim Chaiyanan"
             />
             <div class="w-5 h-[70px] relative"></div>

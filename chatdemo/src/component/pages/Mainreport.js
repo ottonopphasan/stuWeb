@@ -35,25 +35,25 @@ const ReportDB = () => {
               title: 'MRT Pink Line',
               step: 'Rail Part Installation',
               owner: 'John Smith',
-              image: 'https://via.placeholder.com/87x87',
+              image: require("../icon/train1.png"),
             },
             {
               title: 'SRT Red Line',
               step: 'Motor Hopper Installation',
               owner: 'Jame Cena',
-              image: 'https://via.placeholder.com/87x87',
+              image: require("../icon/train2.png"),
             },
             {
               title: 'RAMA IV Bridge',
               step: 'Pre-Tension Wire Tied up',
               owner: 'Somrak Kumarai',
-              image: 'https://via.placeholder.com/87x87',
+              image: require("../icon/bridge1.png"),
             },
             {
               title: 'Nongborn Drainage',
               step: 'Overhead Crane Test',
               owner: 'Tawima Junhorm',
-              image: 'https://via.placeholder.com/87x87',
+              image: require("../icon/tunnel1.png"),
             },
           ].map((project, index) => (
             <Link to="/reportTimeline" key={index}

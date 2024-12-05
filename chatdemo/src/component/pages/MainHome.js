@@ -23,7 +23,7 @@ const ProjectDashboard = () => {
         <div className="w-[358px] text-[#182838] text-[22px] font-bold font-['Montserrat'] leading-7">Past Due Projects</div>
         <div className="flex-col justify-start items-start gap-2.5 flex">
           <div className="self-stretch h-[108px] px-4 py-2 bg-white rounded-[20px] justify-start items-center gap-2.5 inline-flex">
-            <img className="w-[87px] h-[87px] rounded-[11px]" src="https://via.placeholder.com/87x87" alt="project" />
+            <img className="w-[87px] h-[87px] rounded-[11px]" src={require("../icon/train1.png")} alt="project" />
             <div className="flex-col justify-center items-start gap-0.5 inline-flex">
               <div className="w-28 text-[#182838] text-base font-medium font-['Montserrat'] leading-normal">MRT Pink Line</div>
               <div className="w-[161px] h-[18px] text-[#7e898c] text-[13px] font-normal font-['Inter'] leading-tight">
@@ -47,13 +47,13 @@ const ProjectDashboard = () => {
         <div className="self-stretch text-[#182838] text-[22px] font-bold font-['Montserrat'] leading-7">Current Projects</div>
         <div className="grow shrink basis-0 flex-col justify-start items-start gap-2.5 flex">
           <div className="self-stretch h-[108px] px-4 py-2 bg-white rounded-[20px] justify-start items-center gap-2.5 inline-flex">
-            <img className="w-[87px] h-[87px] rounded-[11px]" src="https://via.placeholder.com/87x87" alt="project" />
+            <img className="w-[87px] h-[87px] rounded-[11px]" src={require("../icon/train2.png")} alt="project" />
             <div className="flex-col justify-center items-start gap-0.5 inline-flex">
-              <div className="w-28 text-[#182838] text-base font-medium font-['Montserrat'] leading-normal">MRT Pink Line</div>
+              <div className="w-28 text-[#182838] text-base font-medium font-['Montserrat'] leading-normal">MRT Red Line</div>
               <div className="w-[161px] h-[18px] text-[#7e898c] text-[13px] font-normal font-['Inter'] leading-tight">
                 Step: Rail Part Installation
               </div>
-              <div className="w-[161px] text-[#7e858c] text-xs font-normal font-['Montserrat'] leading-tight">John Smith</div>
+              <div className="w-[161px] text-[#7e858c] text-xs font-normal font-['Montserrat'] leading-tight">Hugh Andrews</div>
             </div>
             <div className="w-[70px] h-[84px] relative">
               <div className="w-[70px] h-5 left-0 top-0 absolute text-center text-[#7e898c] text-[8px] font-normal font-['Inter'] leading-tight">

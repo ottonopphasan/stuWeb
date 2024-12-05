@@ -28,6 +28,7 @@ function App() {
           <Route path="/reportOutput" element={<ReportDetails />} />
           <Route path="/chatroom/:contextId/q" element={<ChatRoom roomType="ChatQ" />} />
           <Route path="/chatroom/:contextId/a" element={<ChatRoom roomType="ChatA" />} />
+          <Route path="/chatroom/:contextId/chat" element={<ChatRoom roomType="ChatChat" />} />
         </Routes>
       </div>
     </Router>
