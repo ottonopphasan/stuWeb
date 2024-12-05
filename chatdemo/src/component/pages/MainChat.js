@@ -26,54 +26,99 @@ const ChatDB = () => {
     </div>
 
     <div class="h-[603px] px-[30px] pt-3.5 bg-white/0 flex-col justify-start items-start gap-2.5 inline-flex">
-        {/* <!-- Profile Card 1 --> */}
-        <div class="h-[72px] p-px justify-between items-center inline-flex">
-            <button
-                onClick={() => handleCardClick()}
-                // className="w-full cursor-pointer"
-              >
-            </button>
-            <img
-            class="w-16 h-16 rounded-lg object-cover"
-            src={require("../icon/people1.png")}
-            alt="Ranong Yala"
-            />
-            <div class="w-5 h-[70px] relative"></div>
-            <div class="w-[238px] h-[52px] flex-col justify-start items-start gap-2.5 inline-flex">
-                <p class="text-gray-800 text-lg font-semibold">Ranong Yala</p>
-                <p class="text-gray-500 text-sm">Project: RAMA IV Bridge</p>
-            </div>
-        </div>
+    
+    <div className="flex flex-col gap-4 px-4 py-2">
+          {[
+            {
+              title: 'Ranong Yala',
+              step: 'Project: RAMA IV Bridge',
+              owner: 'MRT Red Line',
+              image: require("../icon/people1.png"),
+            },
+            
+          ].map((project, index) => (
+            <Link to="/chatroom/chat1" key={index}
+              className="w-[280px]  bg-white rounded-2xl shadow flex items-center p-4">
+              <img
+                className="w-[87px] h-[87px] rounded-lg"
+                src={project.image}
+                alt={`${project.title} Thumbnail`}
+              />
+              <div className="ml-4">
+                <h3 className="text-[#182838] text-base font-medium font-['Montserrat']">
+                  {project.title}
+                </h3>
+                <p className="text-[#7e858c] text-xs font-normal font-['Montserrat']">
+                  {project.owner}
+                </p>
+              </div>
+            </Link>
+          ))}
+      </div> 
 
-        {/* <!-- Profile Card 2 --> */}
-        <div class="h-[72px] p-px justify-between items-center inline-flex">
-            <img
-            class="w-16 h-16 rounded-lg object-cover"
-            src={require("../icon/people2.png")}
-            alt="Suvee Srigaew"
-            />
-            <div class="w-5 h-[70px] relative"></div>
-            <div class="w-[238px] h-[52px] flex-col justify-start items-start gap-2.5 inline-flex">
-            <p class="text-gray-800 text-lg font-semibold">Suvee Srigaew</p>
-            <p class="text-gray-500 text-sm">Project: MRT Yellow Line</p>
-            </div>
-        </div>
+      <div className="flex flex-col gap-4 px-4 py-2">
+          {[
+            
+            {
+              title: 'Suvee Srigaew',
+              step: 'Project: MRT Yellow Line',
+              owner: 'Project: MRT Yellow Line',
+              image: require("../icon/people2.png"),
+            },
+            
+          ].map((project, index) => (
+            <Link to="/chatroom/chat2" key={index}
+              className="w-[280px] bg-white rounded-2xl shadow flex items-center p-4">
+              <img
+                className="w-[87px] h-[87px] rounded-lg"
+                src={project.image}
+                alt={`${project.title} Thumbnail`}
+              />
+              <div className="ml-4">
+                <h3 className="text-[#182838] text-base font-medium font-['Montserrat']">
+                  {project.title}
+                </h3>
+                <p className="text-[#7e858c] text-xs font-normal font-['Montserrat']">
+                  {project.owner}
+                </p>
+              </div>
+            </Link>
+          ))}
+      </div> 
 
-        {/* <!-- Profile Card 3 --> */}
-        <div class="h-[72px] p-px justify-between items-center inline-flex">
-            <img
-            class="w-16 h-16 rounded-lg object-cover"
-            src={require("../icon/people3.png")}
-            alt="Aim Chaiyanan"
-            />
-            <div class="w-5 h-[70px] relative"></div>
-            <div class="w-[238px] h-[52px] flex-col justify-start items-start gap-2.5 inline-flex">
-            <p class="text-gray-800 text-lg font-semibold">Aim Chaiyanan</p>
-            <p class="text-gray-500 text-sm">Project: Drainage Tunnel</p>
-            </div>
-        </div>
-        </div>
+      <div className="flex flex-col gap-4 px-4 py-2">
+          {[
+            {
+              title: 'Aim Chaiyanan',
+              step: 'Project: Drainage Tunnel',
+              owner: 'Project: RAMA IV Bridge',
+              image: require("../icon/people3.png"),
+            },
+            
+          ].map((project, index) => (
+            <Link to="/chatroom/chat3" key={index}
+              className="w-[280px] bg-white rounded-2xl shadow flex items-center p-4">
+              <img
+                className="w-[87px] h-[87px] rounded-lg"
+                src={project.image}
+                alt={`${project.title} Thumbnail`}
+              />
+              <div className="ml-4">
+                <h3 className="text-[#182838] text-base font-medium font-['Montserrat']">
+                  {project.title}
+                </h3>
+                <p className="text-[#7e858c] text-xs font-normal font-['Montserrat']">
+                  {project.owner}
+                </p>
+              </div>
+            </Link>
+          ))}
+      </div>
 
+
+
+
+    </div>
 
       
     {/* Bottom Navigation */}

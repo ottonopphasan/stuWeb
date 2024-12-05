@@ -11,6 +11,9 @@ import ReportDetails from "./component/pages/reportDB";
 import ReportIP from "./component/pages/reportInput";
 import TimelineRP from "./component/pages/reporttimeline";
 import ChatRoom from "./component/pages/ChatRoom"; // Import new component
+import ChatChat from "./component/pages/ChatRoom_Chat";
+import ChatChat1 from "./component/pages/ChatRoom_Chat1";
+import ChatChat2 from "./component/pages/ChatRoom_Chat2";
 
 function App() {
   return (
@@ -28,7 +31,9 @@ function App() {
           <Route path="/reportOutput" element={<ReportDetails />} />
           <Route path="/chatroom/:contextId/q" element={<ChatRoom roomType="ChatQ" />} />
           <Route path="/chatroom/:contextId/a" element={<ChatRoom roomType="ChatA" />} />
-          <Route path="/chatroom/:contextId/chat" element={<ChatRoom roomType="ChatChat" />} />
+          <Route path="/chatroom/chat1" element={<ChatChat roomType="ChatChat" />} />
+          <Route path="/chatroom/chat2" element={<ChatChat1 roomType="ChatChat1" />} />
+          <Route path="/chatroom/chat3" element={<ChatChat2 roomType="ChatChat2" />} />
         </Routes>
       </div>
     </Router>

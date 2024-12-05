@@ -13,10 +13,10 @@ const ChatRoom = ({ roomType }) => {
   // Use useLayoutEffect to load state before render
   useLayoutEffect(() => {
     // Load individual messages for the specific contextId
-    const storedMessages = JSON.parse(localStorage.getItem(`chat_${contextId}`)) || [];
+    const storedMessages = JSON.parse(localStorage.getItem(`chat2`)) || [];
     setMessages(storedMessages);
 
-    const storedchatAnswered = JSON.parse(localStorage.getItem(`chatAnswered_${contextId}`)) || false;
+    const storedchatAnswered = JSON.parse(localStorage.getItem(`chatAnswered2`)) || false;
     setChatAnswered(storedchatAnswered);
 
   }, [contextId]); // Reload when contextId changes
@@ -39,14 +39,14 @@ const ChatRoom = ({ roomType }) => {
     if (currentMessage.trim() === "") return;
 
     const newMessage = {
-      type: roomType === "ChatChat" ? "questioner" : "answerer",
+      type: roomType === "ChatChat2" ? "questioner" : "answerer",
       content: currentMessage,
     };
 
     // Update messages for the specific room
     setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-    if (roomType === "ChatChat") {
+    if (roomType === "ChatChat2") {
       // Simulate AI response
       const botResponse = await simulateAiResponse(currentMessage);
 
@@ -75,7 +75,7 @@ const ChatRoom = ({ roomType }) => {
 
   // Determine message alignment based on roomType
   const getMessageAlignment = (message) => {
-    if (roomType === "ChatChat") {
+    if (roomType === "ChatChat2") {
       return message.type === "questioner" ? "justify-end" : "justify-start";
     } else {
       return message.type === "answerer" ? "justify-end" : "justify-start";
@@ -88,8 +88,8 @@ const ChatRoom = ({ roomType }) => {
       <div className="py-4 px-2 flex justify-between items-center">
         <button
           onClick={() =>{
-            navigate(roomType === "ChatChat" ? "/ChatDashboard" : "/ChatDashboard");
-            localStorage.removeItem(`chat_${contextId}`);
+            navigate(roomType === "ChatChat2" ? "/ChatDashboard" : "/ChatDashboard");
+            localStorage.removeItem(messages);
             
           }}
           className="text-blue-500"
@@ -97,7 +97,7 @@ const ChatRoom = ({ roomType }) => {
           Back
         </button>
         <h1 className="text-lg font-bold">
-          {roomType === "ChatChat" ? "Ranong Yala" : "Chat Room"}
+          {roomType === "ChatChat2" ? "Aim Chaiyanan" : "Chat Room"}
         </h1>
       </div>
 
@@ -107,7 +107,7 @@ const ChatRoom = ({ roomType }) => {
           <div key={index} className={`flex ${getMessageAlignment(message)} mb-2`}>
             <div
               className={`px-4 py-2 rounded-lg ${
-                message.type === (roomType === "ChatChat" ? "questioner" : "answerer")
+                message.type === (roomType === "ChatChat2" ? "questioner" : "answerer")
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 text-black"
               }`}
@@ -125,7 +125,7 @@ const ChatRoom = ({ roomType }) => {
           onChange={(e) => setCurrentMessage(e.target.value)}
           className="flex-1 px-4 py-2 border rounded-lg"
           placeholder={
-            roomType === "ChatChat" ? "message..." : "message..."
+            roomType === "ChatChat2" ? "message..." : "message..."
           }
         ></textarea>
         <button
